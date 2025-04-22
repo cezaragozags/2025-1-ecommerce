@@ -1,0 +1,10 @@
+<div class="container card-container">
+  <div class="row">
+    @for (item of products; track item) {   <!--recorrera el arreglo-->
+      <div class="col-lg-3 col-md-6 col-sm-12"> <!--acomoda las card a los distintos tamaños de pantallas-->
+        <app-cards [product]="item"></app-cards> <!--Cada item sería un producto individual del array products, y cards.component lo renderiza.-->
+      </div>
+    }
+  </div>
+
+</div>

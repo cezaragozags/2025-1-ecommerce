@@ -1,0 +1,21 @@
+<div style="width:18rem;" class="card h-100 d-flex flex-column justify-content-around">
+  <img [src]="product.image" alt="" class="card-img-top" alt="{{product.name}}">
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text">{{product.description}}</p>
+    <p class="card-text"><strong>Unidades Disponibles:</strong> {{product.quantity}} </p>
+  </div>
+  <div class="card-footer">
+    <div class="d-flex justify-content-between">
+      @if (product.quantity > 0) { <!--si hay unidades quiantity > 0 aparece el boton-->
+        <a class="btn btn-primary" (click)="addToCart()">Comprar</a>
+      } @else { <!--si no hay unidades aparece el texto agotado-->
+        <span class="text-danger fw-bold">Agotado</span>
+      }
+      
+    </div>
+
+
+  </div>
+
+</div>

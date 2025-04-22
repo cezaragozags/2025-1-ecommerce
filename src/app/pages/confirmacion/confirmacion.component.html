@@ -1,0 +1,23 @@
+<div class="container mt-5">
+
+  @if (pedido) {
+    <div class="card p-4 shadow-sm">
+      <h4 class="mb-4 text-center">Resumen de tu compra</h4>
+
+      <p><strong>Nombre:</strong> {{ pedido.name }}</p>
+      <p><strong>Correo:</strong> {{ pedido.email }}</p>
+      <p><strong>Dirección:</strong> {{ pedido.address }}</p>
+
+      <div class="alert alert-success mt-4" role="alert">
+        ¡Gracias por tu compra!
+      </div>
+
+      <div class="text-center mt-3">
+        <a class="btn btn-outline-primary" [routerLink]="['/']">Volver a productos</a>
+      </div>
+    </div>
+  } @else {
+    <p class="text-muted text-center">No hay información del pedido.</p>
+  }
+
+</div>

@@ -1,0 +1,27 @@
+<div  class="align-items-center text-bg-light d-flex justify-content-center" >
+  <div class="card w-50 shadow-sm">
+    <div class="card-body text-center">
+      <h2 class="mb-4">Tu carrito</h2>
+
+      @if (cartItems.length > 0) {
+        <ul class="list-group list-group-flush mb-4 text-center">
+          @for (item of cartItems; track item._id) {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong>{{ item.name }}</strong> - {{ item.description }}
+              </div>
+              <button class="btn btn-outline-danger btn-sm" (click)="removeItem(item._id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </li>
+          }
+        </ul>
+
+        <a class="btn btn-success" [routerLink]="['/checkout']">Proceder al pago</a>
+      } @else {
+        <p class="text-muted">Tu carrito está vacío.</p>
+      }
+
+    </div>
+  </div>
+</div>
