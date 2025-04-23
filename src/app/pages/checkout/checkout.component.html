@@ -2,12 +2,12 @@
   <div class="card p-4 shadow-sm" style="width: 100%; max-width: 500px; background-color: #F7F7F2;">
     <h5 class="mb-4 text-center">Formulario de envío</h5>
 
-    <form (formGroup)="checkoutForm" (ngSubmit)="onSubmit()">
+    <form (formGroup)="checkOutForm" (ngSubmit)="onSubmit()">
       <!-- Nombre -->
       <div class="mb-3">
-        <label class="form-label">Nombre</label>
+        <label for="name" class="form-label">Nombre</label>
         <input formControlName="name" class="form-control"/>
-        @if (checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched) {
+        @if (checkOutForm.get('name')?.invalid && checkOutForm.get('name')?.touched) {
           <div class="text-danger small">
             El nombre es obligatorio y debe tener al menos 3 caracteres.
           </div>
@@ -16,9 +16,9 @@
 
       <!-- Correo -->
       <div class="mb-3">
-        <label class="form-label">Correo</label>
+        <label for="email" class="form-label">Correo</label>
         <input formControlName="email" class="form-control"/>
-        @if (checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched) {
+        @if (checkOutForm.get('email')?.invalid && checkOutForm.get('email')?.touched) {
           <div class="text-danger small">
             Ingresa un correo electrónico válido.
           </div>
@@ -27,9 +27,9 @@
 
       <!-- Dirección -->
       <div class="mb-3">
-        <label class="form-label">Dirección</label>
+        <label for="address" class="form-label">Dirección</label>
         <textarea formControlName="address" rows="3" class="form-control"></textarea>
-        @if (checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched) {
+        @if (checkOutForm.get('address')?.invalid && checkOutForm.get('address')?.touched) {
           <div class="text-danger small">
             La dirección es obligatoria.
           </div>
@@ -39,7 +39,7 @@
 
       <!-- Botón -->
       <div class="d-grid">
-        <button class="btn btn-success" type="submit" [disabled]="checkoutForm.invalid">
+        <button class="btn btn-success" type="submit" [disabled]="checkOutForm.invalid">
           Finalizar compra
         </button>
       </div>
