@@ -18,8 +18,8 @@ export class CartComponent implements OnInit{
 
   constructor(private cartService: CartService, private router:Router){} //	cartService: para acceder a funciones como getItems(), removeFromCart(), etc. router: para redireccionar al usuario al finalizar la compra.
 
-  removeItem(productId:number){  // Se llama al dar clic en el ícono de eliminar en la vista.
-    this.cartService.removeFromCart(productId); // Le pasa el id del producto a eliminar al servicio.
+  removeItem(cartItemId:number){  // Se llama al dar clic en el ícono de eliminar en la vista.
+    this.cartService.removeFromCart(cartItemId); // Le pasa el id del producto a eliminar al servicio.
   }
 
   ngOnInit(): void{

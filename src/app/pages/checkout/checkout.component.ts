@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-checkout',
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './checkout.component.html',
-  styleUrl: './checkout.component.css'
+  styleUrl: './checkout.component.css',
 })
 export class CheckoutComponent {
   checkoutForm = new FormGroup({

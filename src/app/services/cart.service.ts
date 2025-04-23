@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../types';
+import { data } from '../data';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class CartService {
   private count = 0;
 
   addToCart(product: Product){
+    const cartItem = {
+      ...product,
+      cartItemId: Date.now() + Math.random() // agrega una copia con un identificador unico
+    };
+
     this.cartItems.push(product);
     this.cartItemsSource.next(this.cartItems);
     this.cartCountSource.next(this.cartItems.length);
@@ -32,12 +38,20 @@ export class CartService {
     this.cartCountSource.next(0);
   }
 
-  removeFromCart(productId: number){
-    this.cartItems = this.cartItems.filter(item => item._id !== productId);
-    this.cartItemsSource.next(this.cartItems);
+  removeFromCart(cartItemId: number){
+    const index = this.cartItems.findIndex(item => item._id === cartItemId);
 
-    this.count = this.cartItems.length;
-    this.cartCountSource.next(this.count)
+    if (index !== -1){
+      const originalProduct = data.find(p => p._id === cartItemId); //restaura la cantidad al producto original en data
+      if (originalProduct) {
+        originalProduct.quantity += 1;
+      }
+      this.cartItems.splice(index, 1); //eliminar solo la primera coincidencia
+
+      this.cartItemsSource.next(this.cartItems); //actualizar los observables
+      this.count = this.cartItems.length;
+      this.cartCountSource.next(this.count);
+    }
   }
 
 }

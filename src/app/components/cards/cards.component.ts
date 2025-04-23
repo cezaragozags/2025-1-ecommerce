@@ -19,8 +19,6 @@ export class CardsComponent {
       this.cartService.addToCart(this.product);
       this.product.quantity -=1; //descuenta una unidad disponible
     }
-    
-    
   }
 
 
