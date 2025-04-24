@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -13,9 +14,8 @@ import { Router } from '@angular/router';
 export class CheckoutComponent {
 
   checkOutForm!: FormGroup;
-  router: any;
 
-  constructor(public formBuilder: FormBuilder, router:Router) {
+  constructor(public formBuilder: FormBuilder, private router:Router, private cartService:CartService) {
     this.checkOutForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -24,22 +24,22 @@ export class CheckoutComponent {
   }
 
 
-onSubmit(): void{
-  if (this.checkOutForm.invalid) return;
+  onSubmit(): void{
+    if (this.checkOutForm.invalid) return;
 
-  const confirmedOrder = {
-    user: this.checkOutForm.value,
-    products: JSON.parse (localStorage.getItem('cartItems') || '[]')
-  };
+    const confirmedOrder = {
+      user: this.checkOutForm.value,
+      products: this.cartService.getItems()
+    };
 
-  localStorage.setItem('confirmedOrder', JSON.stringify(confirmedOrder));
-  alert('¡Gracias por tu compra!');
-  localStorage.removeItem('cartItems');
+    localStorage.setItem('confirmedOrder', JSON.stringify(confirmedOrder));
+    
+    this.cartService.resetCart();
 
-  this.checkOutForm.reset();
-
-  setTimeout(() => {
-    this.router.navigate(['/confirmacion']);
-  }, 500);
-}
+    this.checkOutForm.reset();
+    alert('¡Gracias por tu compra!');
+    setTimeout(() => {
+      this.router.navigate(['']);
+    }, 0);
+  }
 }

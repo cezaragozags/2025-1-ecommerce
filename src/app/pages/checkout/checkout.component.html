@@ -2,7 +2,7 @@
   <div class="card p-4 shadow-sm" style="width: 100%; max-width: 500px; background-color: #F7F7F2;">
     <h5 class="mb-4 text-center">Formulario de envío</h5>
 
-    <form (formGroup)="checkOutForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="checkOutForm" (ngSubmit)="onSubmit()">
       <!-- Nombre -->
       <div class="mb-3">
         <label for="name" class="form-label">Nombre</label>
